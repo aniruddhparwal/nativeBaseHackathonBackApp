@@ -3,8 +3,12 @@ import React, { useContext, useState, useEffect } from "react";
 import { NativeBaseProvider, Box, Center } from "native-base";
 import { BarCodeScanner } from "expo-barcode-scanner";
 import { ImageBackground, StyleSheet } from "react-native";
+import axios from "axios";
+import { useNavigation } from "@react-navigation/native";
 
 export default function Scanner() {
+  const navigation = useNavigation();
+  const [dataID, setDataID] = useState(null);
   const [hasPermission, setHasPermission] = useState(null);
   const [scanned, setScanned] = useState(false);
   useEffect(() => {
@@ -15,8 +19,23 @@ export default function Scanner() {
   }, []);
   const handleBarCodeScanned = ({ type, data }) => {
     setScanned(true);
-    alert(`Bar code with type ${type} and data ${data} has been scanned!`);
+    setDataID(data);
+    getData(data);
   };
+
+  const getData = (data) => {
+    axios
+      .get(`http://192.168.168.219:4000/api/v1/getSlipById/${data}`)
+      .then(function (response) {
+        console.log(response["data"]);
+        navigation.navigate("Slip Data");
+      })
+      .catch(function (error) {
+        console.log(error);
+        navigation.navigate("Failed");
+      });
+  };
+
   return (
     <NativeBaseProvider>
       <Center w="100%">

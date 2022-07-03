@@ -1,4 +1,4 @@
-import React,{useReducer} from "react";
+import React, { useReducer } from "react";
 import {
   Text,
   Link,
@@ -12,14 +12,9 @@ import {
   VStack,
   Box,
 } from "native-base";
-import {TokenContext,initialState} from './src/context/TokenContext'
-import NativeBaseIcon from "./components/NativeBaseIcon";
-import { Platform } from "react-native";
-import Login from "./src/components/Login/Login";
-import Home from "./src/components/Home/Home";
-import Signup from "./src/components/Signup/Signup";
+import { TokenContext, initialState } from "./src/context/TokenContext";
 import Router from "./Router";
-import DrawerMain from "./src/components/Dashboard/Navbar/DrawerMain";
+// import Scanner from "./src/components/Dashboard/Scanner";
 
 // Define the config
 const config = {
@@ -32,11 +27,10 @@ export const theme = extendTheme({ config });
 
 const reducer = (state, action) => {
   switch (action.type) {
-    case 'SET_TOKEN':
+    case "SET_TOKEN":
       return { token: action.payload };
   }
 };
-
 
 export default function App() {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -46,12 +40,11 @@ export default function App() {
       {/* <Login/> */}
       {/* <DrawerMain/> */}
       <TokenContext.Provider value={[state, dispatch]}>
-      {/* other components */}
-      <Router/>
-    </TokenContext.Provider>
+        {/* other components */}
+        <Router />
+      </TokenContext.Provider>
       {/* <DrawerMain/> */}
       {/* <Signup/> */}
-
 
       {/* <Center
         _dark={{ bg: "blueGray.900" }}
@@ -89,7 +82,6 @@ export default function App() {
         </VStack>
       </Center> */}
     </NativeBaseProvider>
-
   );
 }
 
