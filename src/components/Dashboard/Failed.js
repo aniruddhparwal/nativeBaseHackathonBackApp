@@ -1,14 +1,30 @@
 import React from "react";
-import { NativeBaseProvider, Box, Center } from "native-base";
+import { NativeBaseProvider, Box, Center,Text } from "native-base";
+import { Image, StyleSheet } from "react-native";
+
 
 export default function Scanner() {
+  const styles = StyleSheet.create({
+    image: {
+      flex: 1,
+      justifyContent: "center",
+      width:"200",
+    },
+    logo: {
+      width: 100,
+      height: 100,
+      backgroundColor:"white"
+    },
+  });
+
   return (
     <NativeBaseProvider>
-      <Center w="100%">
-        <Box safeArea p="2" py="8" w="90%" maxW="290" h="70%">
+       <Center w='full' flex={1} background={"white"}>
+        <Image source={require('../../assets/failled.gif')} style={styles.logo}/>
+        <Text fontSize="2xl">
           This is not a vaild Code
-        </Box>
-      </Center>
+        </Text>
+        </Center>
     </NativeBaseProvider>
   );
 }

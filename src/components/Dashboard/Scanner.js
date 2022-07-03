@@ -28,7 +28,7 @@ export default function Scanner() {
       .get(`http://192.168.168.219:4000/api/v1/getSlipById/${data}`)
       .then(function (response) {
         console.log(response["data"]);
-        navigation.navigate("Slip Data");
+        navigation.navigate("Slip Data",{ secretKey: data });
       })
       .catch(function (error) {
         console.log(error);
