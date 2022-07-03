@@ -40,9 +40,6 @@ const Home = ({ navigation }) => {
                 Get Access
               </Button>
             </Box>
-            {/* <Box alignItems="center" p={'3'}>
-                <Button w="full" onPress={() => navigation.navigate('Signup')}>Signup</Button>
-            </Box> */}
           </Box>
         </ImageBackground>
       </Box>
